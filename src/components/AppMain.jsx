@@ -3,10 +3,10 @@ import { useState } from 'react'
 
 export default function AppMain() {
 
-    const [active, setActive] = useState(0)
+    const [active, setActive] = useState('Nessun linguaggio selezionato')
 
     function handleclick(e) {
-        const content = Number(e.target.getAttribute('data-content'))
+        const content = e.target.getAttribute('data-content')
 
         setActive(content)
     }
@@ -15,11 +15,14 @@ export default function AppMain() {
     return (
         <main>
             <div className="button-container">
-                {languages.map((item, index)=> (
+                {languages.map((item)=> (
                     <button key={item.id} onClick={handleclick} data-content={item.content}>
                         {item.nome}
                     </button>
                 ))}
+            </div>
+            <div className='res-btn'>
+                {<p>{active}</p>}
             </div>
         </main>
     )
